@@ -440,9 +440,6 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
                               self.prob(fTx, t2=best_t2, gPara=best_gPara, gPerp=best_gPerp, fm=best_fm, phi=best_phi,
                                         n=best_n, a=best_a, c=best_c, rbz=best_rbz), 'r-', lw=3)
 
-                self.tightLayout()
-
-
                 gamma = 2.802  # 2.802 MHz/G
                 self.bzEdit.setText("{0:.2f}".format(best_rbz/gamma))
                 self.echoParamFmResultEdit.setText("{0:.2f}".format(best_fm))
@@ -531,7 +528,6 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
                                                   best_c) + yOff
                              , 'r-', lw=3)
                     # label="T2={0:.2f} us, Gpara={1:.2f} MHz".format(best_t2, best_gPara))
-                self.tightLayout()
 
                 self.echoParamFmResultEdit.setText("{0:.2f}".format(best_fm))
                 self.echoParamGparaResultEdit.setText("{0:.2f}".format(best_gPara))
@@ -544,7 +540,8 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
         else:
             # exec without fitting
             self.axe.plot(tau / 1000, tn + yOff, 'o', markersize=int(self.mrkSizeEdit.text()), label=filename1_tail)
-        self.axe.legend(fontsize = 10, bbox_to_anchor=(0.98, 1), borderaxespad=0)
+        self.axe.legend(fontsize = 10, loc=1)
+        self.tightLayout()
 
 
 if __name__ == '__main__':
