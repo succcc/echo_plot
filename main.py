@@ -287,7 +287,7 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
 
             for idx in idxArray:
                 dataPath = self.dataArray[idx]
-                self.echoPlot(dataPath, yOff=-0.12*idx)
+                self.echoPlot(dataPath, yOff=float(self.yOffEdit.text())*idx)
 
 
     def echoPlot(self, dataPath, yOff=0):

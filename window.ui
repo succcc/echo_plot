@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1215</width>
-    <height>908</height>
+    <height>774</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -142,6 +142,43 @@
     <item row="2" column="5">
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
+       <widget class="QGroupBox" name="groupBox">
+        <property name="minimumSize">
+         <size>
+          <width>330</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>330</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="title">
+         <string>Plot target</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QRadioButton" name="echoRadio">
+           <property name="text">
+            <string>Echo</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QRadioButton" name="usrRadio">
+           <property name="text">
+            <string>Custom Plot</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+        <zorder>usrRadio</zorder>
+        <zorder>echoRadio</zorder>
+       </widget>
+      </item>
+      <item>
        <widget class="QGroupBox" name="groupBox_2">
         <property name="minimumSize">
          <size>
@@ -187,15 +224,134 @@
            </property>
           </widget>
          </item>
+         <item row="0" column="2">
+          <widget class="QLineEdit" name="yOffEdit">
+           <property name="text">
+            <string>-0.12</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="label_24">
+           <property name="text">
+            <string>y offset</string>
+           </property>
+          </widget>
+         </item>
         </layout>
         <zorder>PLLFitRadio</zorder>
         <zorder>fitCheckBox</zorder>
         <zorder>besselFitRadio</zorder>
         <zorder>perpFitRadio</zorder>
+        <zorder>yOffEdit</zorder>
+        <zorder>label_24</zorder>
        </widget>
       </item>
       <item>
-       <widget class="QScrollArea" name="scrollArea">
+       <widget class="QWidget" name="widget" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>330</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>330</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_7">
+         <item row="1" column="0">
+          <widget class="QRadioButton" name="smRadio">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="4">
+          <widget class="QLabel" name="label_33">
+           <property name="text">
+            <string>CoarsenLevel</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QRadioButton" name="cRadio">
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="5">
+          <widget class="QSpinBox" name="coarsenlevelSpinBox">
+           <property name="value">
+            <number>2</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="2">
+          <widget class="QLabel" name="label_13">
+           <property name="text">
+            <string>Deg.</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="4">
+          <widget class="QLabel" name="label_32">
+           <property name="text">
+            <string>Pol.</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="5">
+          <widget class="QSpinBox" name="smthPolSpinBox">
+           <property name="value">
+            <number>2</number>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QCheckBox" name="isCoarsenBox">
+           <property name="text">
+            <string>Coarsen</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="3">
+          <widget class="QSpinBox" name="smthLengthSpinBox">
+           <property name="value">
+            <number>11</number>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QCheckBox" name="smoothingCheckBox">
+           <property name="text">
+            <string>Smoothing</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QScrollArea" name="scrollArea_2">
         <property name="minimumSize">
          <size>
           <width>330</width>
@@ -215,18 +371,18 @@
          <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
         <property name="widgetResizable">
-         <bool>false</bool>
+         <bool>true</bool>
         </property>
         <property name="alignment">
-         <set>Qt::AlignHCenter|Qt::AlignTop</set>
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
         </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents_2">
+        <widget class="QWidget" name="scrollAreaWidgetContents">
          <property name="geometry">
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>372</width>
-           <height>509</height>
+           <width>318</width>
+           <height>524</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_4">
@@ -235,13 +391,13 @@
             <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>0</height>
+              <height>300</height>
              </size>
             </property>
             <property name="maximumSize">
              <size>
               <width>300</width>
-              <height>16777215</height>
+              <height>300</height>
              </size>
             </property>
             <property name="currentIndex">
@@ -884,7 +1040,7 @@
             <property name="minimumSize">
              <size>
               <width>300</width>
-              <height>600</height>
+              <height>200</height>
              </size>
             </property>
             <property name="maximumSize">
@@ -899,109 +1055,6 @@
         </widget>
        </widget>
       </item>
-      <item>
-       <widget class="QWidget" name="widget" native="true">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>330</width>
-          <height>0</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>330</width>
-          <height>16777215</height>
-         </size>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_7">
-         <item row="0" column="1">
-          <widget class="QCheckBox" name="smoothingCheckBox">
-           <property name="text">
-            <string>Smoothing</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
-          <widget class="QLabel" name="label_32">
-           <property name="text">
-            <string>Pol.</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="5">
-          <widget class="QSpinBox" name="coarsenlevelSpinBox">
-           <property name="value">
-            <number>2</number>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_13">
-           <property name="text">
-            <string>Deg.</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="5">
-          <widget class="QSpinBox" name="smthPolSpinBox">
-           <property name="value">
-            <number>2</number>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="4">
-          <widget class="QLabel" name="label_33">
-           <property name="text">
-            <string>CoarsenLevel</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QCheckBox" name="isCoarsenBox">
-           <property name="text">
-            <string>Coarsen</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <widget class="QSpinBox" name="smthLengthSpinBox">
-           <property name="value">
-            <number>11</number>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0">
-          <widget class="QRadioButton" name="smRadio">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QRadioButton" name="cRadio">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
      </layout>
     </item>
     <item row="0" column="0" rowspan="7">
@@ -1014,8 +1067,8 @@
       </property>
       <property name="minimumSize">
        <size>
-        <width>400</width>
-        <height>200</height>
+        <width>100</width>
+        <height>100</height>
        </size>
       </property>
       <property name="maximumSize">
@@ -1025,43 +1078,6 @@
        </size>
       </property>
       <layout class="QVBoxLayout" name="mplvlMain"/>
-     </widget>
-    </item>
-    <item row="1" column="5">
-     <widget class="QGroupBox" name="groupBox">
-      <property name="minimumSize">
-       <size>
-        <width>330</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="maximumSize">
-       <size>
-        <width>330</width>
-        <height>16777215</height>
-       </size>
-      </property>
-      <property name="title">
-       <string>Plot target</string>
-      </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QRadioButton" name="echoRadio">
-         <property name="text">
-          <string>Echo</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="QRadioButton" name="usrRadio">
-         <property name="text">
-          <string>Custom Plot</string>
-         </property>
-        </widget>
-       </item>
-      </layout>
-      <zorder>usrRadio</zorder>
-      <zorder>echoRadio</zorder>
      </widget>
     </item>
    </layout>
