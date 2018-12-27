@@ -43,8 +43,8 @@ class EchoFunctions():
     @staticmethod
     def pllFit(x, xoff, t2, gPara, fm, phi, n, a, c):
         return a * (np.exp(-np.power(x / (t2 / 1e6), n)) * np.cos(2 * np.pi * gPara * 1e6 * (
-            np.cos((x - xoff) * 2 * np.pi * fm * 1e3 + phi / 180 * np.pi) / (2 * np.pi * fm * 1e3) - 2 * np.cos(
-                1 / 2 * (x - xoff) * 2 * np.pi * fm * 1e3 + phi / 180 * np.pi) / (2 * np.pi * fm * 1e3) + np.cos(
+            np.sin((x - xoff) * 2 * np.pi * fm * 1e3 + phi / 180 * np.pi) / (2 * np.pi * fm * 1e3) - 2 * np.sin(
+                1 / 2 * (x - xoff) * 2 * np.pi * fm * 1e3 + phi / 180 * np.pi) / (2 * np.pi * fm * 1e3) + np.sin(
                 phi / 180 * np.pi) / (2 * np.pi * fm * 1e3)))) + c
 
     @staticmethod
@@ -60,7 +60,7 @@ class EchoFunctions():
         # phi[deg->rad], fm->wm, (gPara, gPerp)[MHz ->angular Hz], rBz[MHz->angular Hz]
         # 시간 t는 이미 second 단위로 입력되고 있다.
         return a*(np.exp(-np.power(t / (t2 / 1e6), n))
-                    *np.cos(EchoFunctions.theta(t, gPara=2*np.pi*1e6*gPara, gPerp=2*np.pi*1e6*gPerp, wm=2*np.pi*1e3*fm,
+                    *np.cos(EchoFunctions.theta(t, gPara=1e6*gPara, gPerp=2*np.pi*1e6*gPerp, wm=2*np.pi*1e3*fm,
                                                 phi=np.pi/180*phi, rbz=2*np.pi*1e6*rbz)))+c
 
     @staticmethod
@@ -82,6 +82,6 @@ class EchoFunctions():
             R = np.sqrt((rbz) ** 2 + gPerp ** 2)
             isPerp = 1
         return isPerp*R/wm*(
-            2*sp.ellipeinc(1/2*wm*t, (gPerp/R)**2)-sp.ellipeinc(wm*t+phi, (gPerp/R)**2)
+            2*sp.ellipeinc(1/2*wm*t+phi, (gPerp/R)**2)-sp.ellipeinc(wm*t+phi, (gPerp/R)**2)
             - sp.ellipeinc(phi, (gPerp/R)**2)
         )
