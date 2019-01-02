@@ -54,7 +54,7 @@ class EchoFunctions():
                    np.sin(2 * np.pi * fm * 1e3 * (x - xoff) / 4), 2))) + c
 
     @staticmethod
-    def prob(t, gPara=0*1e6, gPerp=0*1e6, fm=5e7, phi=0.0, t2=10.0, rbz=10.0, a=0.1, c=0.9, n=1):
+    def prob(t, gPara=0*1e6, gPerp=0*1e6, fm=500, phi=0.0, t2=10.0, rbz=10.0, a=0.1, c=0.9, n=1):
         # 여기서 parameter의 유닛을 맞춘다.
         # 아래 return에서 theta함수를 호출할 때 단위 변경된 값을 입력한다.
         # phi[deg->rad], fm->wm, (gPara, gPerp)[MHz ->angular Hz], rBz[MHz->angular Hz]
