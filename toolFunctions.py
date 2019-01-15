@@ -84,4 +84,5 @@ class EchoFunctions():
         return isPerp*R/wm*(
             2*sp.ellipeinc(1/2*wm*t+phi, (gPerp/R)**2)-sp.ellipeinc(wm*t+phi, (gPerp/R)**2)
             - sp.ellipeinc(phi, (gPerp/R)**2)
+
         )
