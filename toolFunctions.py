@@ -57,7 +57,7 @@ class EchoFunctions():
     def prob(t, gPara=0*1e6, gPerp=0*1e6, fm=500, phi=0.0, t2=10.0, rbz=10.0, a=0.1, c=0.9, n=1):
         # 여기서 parameter의 유닛을 맞춘다.
         # 아래 return에서 theta함수를 호출할 때 단위 변경된 값을 입력한다.
-        # phi[deg->rad], fm->wm, (gPara, gPerp)[MHz ->angular Hz], rBz[MHz->angular Hz]
+        # phi[deg->rad], fm->wm, gPara[MHz], gPerp[MHz ->angular Hz], rBz[MHz->angular Hz]
         # 시간 t는 이미 second 단위로 입력되고 있다.
         return a*(np.exp(-np.power(t / (t2 / 1e6), n))
                     *np.cos(EchoFunctions.theta(t, gPara=1e6*gPara, gPerp=2*np.pi*1e6*gPerp, wm=2*np.pi*1e3*fm,
@@ -68,8 +68,10 @@ class EchoFunctions():
         return EchoFunctions.thetaPara(t, gPara=gPara, wm=wm, phi=phi) \
                 +EchoFunctions.thetaPerp(t, gPerp=gPerp, wm=wm, phi=phi, rbz=rbz)
 
+
     @staticmethod
     def thetaPara(t, gPara=0.0, wm=5e7, phi=0.0):
+        # Gpara는 ncomms5429 논문대로 non-angular frequency를 함수 내에서 사용한다.
         return 2*np.pi*gPara*(np.sin(t*wm + phi)/wm - 2*np.sin(1/2*t*wm + phi)/wm + np.sin(phi)/wm)
         #return 4*gPara/wm*(np.sin(wm*t/8))**2*np.sin(wm*t/2+phi)
 
