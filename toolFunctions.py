@@ -43,16 +43,16 @@ class UtilFunc():
 class EchoFunctions():
     @staticmethod
     def pllFit(t, xoff, t2, gPara, fm, phi, n, a, c):
-        return a * (np.exp(-np.power(x / (t2 / 1e6), n)) * np.cos(2 * np.pi * gPara * 1e6 * (
-            np.sin((x - xoff) * 2 * np.pi * fm * 1e3 + phi / 180 * np.pi) / (2 * np.pi * fm * 1e3) - 2 * np.sin(
-                1 / 2 * (x - xoff) * 2 * np.pi * fm * 1e3 + phi / 180 * np.pi) / (2 * np.pi * fm * 1e3) + np.sin(
+        return a * (np.exp(-np.power(t / (t2 / 1e6), n)) * np.cos(2 * np.pi * gPara * 1e6 * (
+            np.sin((t - xoff) * 2 * np.pi * fm * 1e3 + phi / 180 * np.pi) / (2 * np.pi * fm * 1e3) - 2 * np.sin(
+                1 / 2 * (t - xoff) * 2 * np.pi * fm * 1e3 + phi / 180 * np.pi) / (2 * np.pi * fm * 1e3) + np.sin(
                 phi / 180 * np.pi) / (2 * np.pi * fm * 1e3)))) + c
 
     @staticmethod
     def besselFit(t, xoff, t2, gPara, fm, n, a, c):
-        return a * np.exp(-np.power(x / (t2 / 1e6), n)) * \
+        return a * np.exp(-np.power(t / (t2 / 1e6), n)) * \
                (sp.jv(0, 8 * np.pi * (gPara * 1e6 / (2 * np.pi * fm * 1e3)) * np.power(
-                   np.sin(2 * np.pi * fm * 1e3 * (x - xoff) / 4), 2))) + c
+                   np.sin(2 * np.pi * fm * 1e3 * (t - xoff) / 4), 2))) + c
 
 
 # input: gPara in angular MHz, fm in khz, rbz=0
