@@ -57,15 +57,16 @@ class EchoFunctions():
 
 # input: gPara in angular MHz, fm in khz, rbz=0
     @staticmethod
-    def besselHalfFit(t, xoff, t2, gPara, fm, phi, n, a, c):
+    def besselHalfFit(t, t2, gPara, fm, phi, n, a, c):
         iResult = 0
-        num = 1000
-        phis = np.linspace(phi, phi+np.pi, num)
-        dphi = np.pi/num
+        num = 100
+        totalPhi = 180 # in degree
+        phis = np.linspace(phi, phi+totalPhi, num)
+        dphi = totalPhi/num
 
         for iphi in phis:
             iResult = iResult + dphi*EchoFunctions.probPhiHalf(t, gPara=gPara, fm=fm, phi=iphi, a=a, c=c, n=n, t2=t2)
-        return iResult/np.pi
+        return iResult/(totalPhi)
 
     @staticmethod
     def probPhiHalf(t, gPara, fm, phi, t2, a, c, n):

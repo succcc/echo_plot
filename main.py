@@ -377,50 +377,50 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
                           min=float(self.echoParamPhiMinEdit.text()),
                           max=float(self.echoParamPhiMaxEdit.text()))
                 if self.phiFixCheckBox.isChecked():
-                    parrs.add('phi', expr=float(self.echoParamPhiStartEdit.text()))
+                    parrs.add('phi', expr=self.echoParamPhiStartEdit.text())
 
                 parrs.add('n', value=float(self.echoParamNStartEdit.text()),
                           min=float(self.echoParamNMinEdit.text()),
                           max=float(self.echoParamNMaxEdit.text()))
                 if self.nFixCheckBox.isChecked():
-                    parrs.add('n', expr=float(self.echoParamNStartEdit.text()))
+                    parrs.add('n', expr=self.echoParamNStartEdit.text())
 
                 parrs.add('t2', value=float(self.echoParamT2StartEdit.text()),
                           min=float(self.echoParamT2MinEdit.text()),
                           max=float(self.echoParamT2MaxEdit.text()))
                 if self.t2FixCheckBox.isChecked():
-                    parrs.add('t2', expr=float(self.echoParamT2StartEdit.text()))
+                    parrs.add('t2', expr=self.echoParamT2StartEdit.text())
 
                 parrs.add('gPara', value=float(self.echoParamGparaStartEdit.text()),
                           min=float(self.echoParamGparaMinEdit.text()),
                           max=float(self.echoParamGparaMaxEdit.text()))
                 if self.gParaFixCheckBox.isChecked():
-                    parrs.add('gPara', expr=float(self.echoParamGparaStartEdit.text()))
+                    parrs.add('gPara', expr=self.echoParamGparaStartEdit.text())
 
                 parrs.add('gPerp', value=float(self.echoParamGperpStartEdit.text()),
                           min=float(self.echoParamGperpMinEdit.text()),
                           max=float(self.echoParamGperpMaxEdit.text()))
                 if self.gPerpFixCheckBox.isChecked():
-                    parrs.add('gPerp', expr=float(self.echoParamGperpStartEdit.text()))
+                    parrs.add('gPerp', expr=self.echoParamGperpStartEdit.text())
 
                 parrs.add('fm', value=float(self.echoParamFmStartEdit.text()),
                           min=float(self.echoParamFmMinEdit.text()),
                           max=float(self.echoParamFmMaxEdit.text()))
                 if self.fmFixCheckBox.isChecked():
-                    parrs.add('fm', expr=float(self.echoParamFmStartEdit.text()))
+                    parrs.add('fm', expr=self.echoParamFmStartEdit.text())
 
                 parrs.add('rbz', expr=str(float(self.echoParamGammaBzStartEdit.text())))
                 parrs.add('a', value=float(self.echoParamAStartEdit.text()),
                           min=float(self.echoParamAMinEdit.text()),
                           max=float(self.echoParamAMaxEdit.text()))
                 if self.aFixCheckBox.isChecked():
-                    parrs.add('a', expr=float(self.echoParamAStartEdit.text()))
+                    parrs.add('a', expr=self.echoParamAStartEdit.text())
 
                 parrs.add('c', value=float(self.echoParamCStartEdit.text()),
                           min=float(self.echoParamCMinEdit.text()),
                           max=float(self.echoParamCMaxEdit.text()))
                 if self.cFixCheckBox.isChecked():
-                    parrs.add('c', expr=float(self.echoParamCStartEdit.text()))
+                    parrs.add('c', expr=self.echoParamCStartEdit.text())
 
                 result = mod.fit(tnf, parrs, t=tauf / 1e9)
 
@@ -458,16 +458,18 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
                     mod = Model(self.besselFit)
                 else:
                     #mod = Model(self.pllFit)
-                    mod = Model(self.probPhiHalf)
+                    mod = Model(self.besselHalfFit)
                     parrs.add('phi', value=float(self.echoParamPhiStartEdit.text()),
                               min=float(self.echoParamPhiMinEdit.text()),
                               max=float(self.echoParamPhiMaxEdit.text()))
                     if self.phiFixCheckBox.isChecked():
-                        parrs.add('phi', expr=float(self.echoParamPhiStartEdit.text()))
-                #parrs.add('xoff', value=0,
-                #          min=-1e-4,
-                #          max=1e-4)
-                #parrs.add('xoff', expr='0')
+                        parrs.add('phi', expr=self.echoParamPhiStartEdit.text())
+
+                if False:
+                    parrs.add('xoff', value=0,
+                              min=-1e-4,
+                              max=1e-4)
+                    parrs.add('xoff', expr='0')
 
                 # add with tuples: (NAME VALUE VARY MIN  MAX  EXPR  BRUTE_STEP)
                 parrs.add('phi', value=float(self.echoParamPhiStartEdit.text()),
@@ -479,38 +481,38 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
                           min=float(self.echoParamNMinEdit.text()),
                           max=float(self.echoParamNMaxEdit.text()))
                 if self.nFixCheckBox.isChecked():
-                    parrs.add('n', expr=float(self.echoParamNStartEdit.text()))
+                    parrs.add('n', expr=self.echoParamNStartEdit.text())
 
                 parrs.add('t2', value=float(self.echoParamT2StartEdit.text()),
                           min=float(self.echoParamT2MinEdit.text()),
                           max=float(self.echoParamT2MaxEdit.text()))
                 if self.t2FixCheckBox.isChecked():
-                    parrs.add('t2', expr=float(self.echoParamT2StartEdit.text()))
+                    parrs.add('t2', expr=self.echoParamT2StartEdit.text())
 
                 parrs.add('gPara', value=float(self.echoParamGparaStartEdit.text()),
                           min=float(self.echoParamGparaMinEdit.text()),
                           max=float(self.echoParamGparaMaxEdit.text()))
                 if self.gParaFixCheckBox.isChecked():
-                    parrs.add('gPara', expr=float(self.echoParamGparaStartEdit.text()))
+                    parrs.add('gPara', expr=self.echoParamGparaStartEdit.text())
 
 
                 parrs.add('fm', value=float(self.echoParamFmStartEdit.text()),
                           min=float(self.echoParamFmMinEdit.text()),
                           max=float(self.echoParamFmMaxEdit.text()))
                 if self.fmFixCheckBox.isChecked():
-                    parrs.add('fm', expr=float(self.echoParamFmStartEdit.text()))
+                    parrs.add('fm', expr=self.echoParamFmStartEdit.text())
 
                 parrs.add('a', value=float(self.echoParamAStartEdit.text()),
                           min=float(self.echoParamAMinEdit.text()),
                           max=float(self.echoParamAMaxEdit.text()))
                 if self.aFixCheckBox.isChecked():
-                    parrs.add('a', expr=float(self.echoParamAStartEdit.text()))
+                    parrs.add('a', expr=self.echoParamAStartEdit.text())
 
                 parrs.add('c', value=float(self.echoParamCStartEdit.text()),
                           min=float(self.echoParamCMinEdit.text()),
                           max=float(self.echoParamCMaxEdit.text()))
                 if self.cFixCheckBox.isChecked():
-                    parrs.add('c', expr=float(self.echoParamCStartEdit.text()))
+                    parrs.add('c', expr=self.echoParamCStartEdit.text())
 
                 result = mod.fit(tnf, parrs, t=tauf/1e9)
                 best_a = result.best_values['a']
@@ -546,7 +548,7 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
 
 
                     self.axe.plot(fTx * 1e6,
-                                  self.besselHalfFit(fTx, 0, best_t2, best_gPara, best_fm, best_phi, best_n,
+                                  self.besselHalfFit(fTx, best_t2, best_gPara, best_fm, best_phi, best_n,
                                                      best_a, best_c) + yOff, 'b-', lw=3)
 
 
