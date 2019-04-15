@@ -457,16 +457,17 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
                 if self.besselFitRadio.isChecked():
                     mod = Model(self.besselFit)
                 else:
-                    mod = Model(self.pllFit)
+                    #mod = Model(self.pllFit)
+                    mod = Model(self.probPhiHalf)
                     parrs.add('phi', value=float(self.echoParamPhiStartEdit.text()),
                               min=float(self.echoParamPhiMinEdit.text()),
                               max=float(self.echoParamPhiMaxEdit.text()))
                     if self.phiFixCheckBox.isChecked():
                         parrs.add('phi', expr=self.echoParamPhiStartEdit.text())
-                parrs.add('xoff', value=0,
-                          min=-1e-4,
-                          max=1e-4)
-                parrs.add('xoff', expr='0')
+                #parrs.add('xoff', value=0,
+                #          min=-1e-4,
+                #          max=1e-4)
+                #parrs.add('xoff', expr='0')
 
                 # add with tuples: (NAME VALUE VARY MIN  MAX  EXPR  BRUTE_STEP)
                 parrs.add('n', value=float(self.echoParamNStartEdit.text()),
@@ -492,7 +493,7 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
                           min=float(self.echoParamCMinEdit.text()),
                           max=float(self.echoParamCMaxEdit.text()))
 
-                result = mod.fit(tnf, parrs, x=tauf/1e9)
+                result = mod.fit(tnf, parrs, t=tauf/1e9)
                 best_a = result.best_values['a']
                 best_t2 = result.best_values['t2']
                 # t2_stderr = result.params['t2'].stderr
@@ -503,7 +504,7 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
                 if self.PLLFitRadio.isChecked():
                     best_phi = result.best_values['phi']
                 best_n = result.best_values['n']
-                best_xoff = result.best_values['xoff']
+                #best_xoff = result.best_values['xoff']
 
                 self.textBrowser.setText(result.fit_report())
                 #print(result.fit_report())
@@ -518,16 +519,26 @@ class Main(QMainWindow,window.Ui_MainWindow, toolFunctions.EchoFunctions, toolFu
                 # self.axe.errorbar(tau / 1000, tn, color='k', yerr=tnStd, fmt='o', markersize=8)
 
                 if self.PLLFitRadio.isChecked():
-                    self.axe.plot(fTx * 1e6, self.pllFit(fTx, best_xoff, best_t2, best_gPara, best_fm, best_phi, best_n, best_a,
-                                               best_c) + yOff
-                             , 'r-', lw=3)
+                    #self.axe.plot(fTx * 1e6, self.pllFit(fTx, best_xoff, best_t2, best_gPara, best_fm, best_phi, best_n, best_a,
+                    #                           best_c) + yOff
+                    #         , 'r-', lw=3)
                     # label="T2={0:.2f} us, Gpara={1:.2f} MHz".format(best_t2, best_gPara))
+
+
+
+                    self.axe.plot(fTx * 1e6,
+                                  self.besselHalfFit(fTx, 0, best_t2, best_gPara, best_fm, best_phi, best_n,
+                                                     best_a, best_c) + yOff, 'r-', lw=3)
+
+
+
                     self.echoParamPhiResultEdit.setText("{0:.2f}".format(best_phi))
                 if self.besselFitRadio.isChecked():
-                    self.axe.plot(fTx * 1e6, self.besselFit(fTx, best_xoff, best_t2, best_gPara, best_fm, best_n, best_a,
-                                                  best_c) + yOff
-                             , 'r-', lw=3)
-                    # label="T2={0:.2f} us, Gpara={1:.2f} MHz".format(best_t2, best_gPara))
+                    self.axe.plot(fTx * 1e6,
+                                  self.besselFit(fTx, best_xoff, best_t2, best_gPara, best_fm, best_n, best_a,
+                                                 best_c) + yOff
+                                  , 'r-', lw=3)
+                    #label="T2={0:.2f} us, Gpara={1:.2f} MHz".format(best_t2, best_gPara))
 
                 self.echoParamFmResultEdit.setText("{0:.2f}".format(best_fm))
                 self.echoParamGparaResultEdit.setText("{0:.2f}".format(best_gPara))
