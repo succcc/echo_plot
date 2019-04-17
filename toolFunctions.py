@@ -54,7 +54,6 @@ class EchoFunctions():
                (sp.jv(0, 8 * np.pi * (gPara * 1e6 / (2 * np.pi * fm * 1e3)) * np.power(
                    np.sin(2 * np.pi * fm * 1e3 * (t - xoff) / 4), 2))) + c
 
-
 # input: gPara in angular MHz, fm in khz, rbz=0
     @staticmethod
     def besselHalfFit(t, t2, gPara, fm, phi, n, a, c):
@@ -88,7 +87,6 @@ class EchoFunctions():
     def theta(t, gPara=0.0, gPerp=0.0, wm=5e7, phi=0.0, rbz=10.0):
         return EchoFunctions.thetaPara(t, gPara=gPara, wm=wm, phi=phi) #\
                 #+EchoFunctions.thetaPerp(t, gPerp=gPerp, wm=wm, phi=phi, rbz=rbz)
-
 
     @staticmethod
     def thetaPara(t, gPara=0.0, wm=5e7, phi=0.0):
